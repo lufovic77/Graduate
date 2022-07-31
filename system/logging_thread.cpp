@@ -637,7 +637,7 @@ RC LoggingThread::run()
 		
 #endif
 #else
-	#if PER_WORKER_RECOVERY && TAURUS_CHUNK
+	#if PER_WORKER_RECOVERY && TAURUS_CHUNK && LOG_ALGORITHM == LOG_TAURUS
 		uint64_t num_worker = g_thread_cnt / g_num_logger * POOL_SE_SPACE;
 		/*
 		if (g_zipf_theta > CONTENTION_THRESHOLD)

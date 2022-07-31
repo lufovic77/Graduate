@@ -108,9 +108,9 @@ void TaurusLogManager::init()
 		}
 		//string dir = ".";
 #if LOG_TYPE == LOG_DATA
-		_logger[i]->init(dir + "/TD_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
+		_logger[i]->init(dir + "TD_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
 #else
-		_logger[i]->init(dir + "/TC_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
+		_logger[i]->init(dir + "TC_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
 #endif
 
 #if COMPRESS_LSN_LOG

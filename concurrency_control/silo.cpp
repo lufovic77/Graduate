@@ -404,12 +404,13 @@ txn_man::validate_silo()
 				right_before_get = get_sys_clock();
 				Access * access = accesses[ write_set[i] ];
 				row_t * row = access->orig_row;
+				RC local;
 				#if LOG_ALGORITHM == LOG_TAURUS
-				RC local = lt.get_row(row, access->type, this, tempvar, lsn_vector, NULL, true, access->tid, true);
+				local = lt.get_row(row, access->type, this, tempvar, lsn_vector, NULL, true, access->tid, true);
 				#elif LOG_ALGORITHM == LOG_SERIAL
-				RC local = lt.get_row(row, access->type, this, tempvar, NULL, &_max_lsn, true, access->tid, true);
+				local = lt.get_row(row, access->type, this, tempvar, NULL, &_max_lsn, true, access->tid, true);
 				#elif LOG_ALGORITHM == LOG_NO || LOG_ALGORITHM == LOG_BATCH
-				RC local = lt.get_row(row, access->type, this, tempvar, NULL, NULL, true, access->tid, true);
+				local = lt.get_row(row, access->type, this, tempvar, NULL, NULL, true, access->tid, true);
 				#else
 				assert(false);
 				#endif
@@ -463,12 +464,13 @@ txn_man::validate_silo()
 		for (uint32_t i = 0; i < tmp_wr_cnt; i++) {
 			Access * access = accesses[ write_set[i] ];
 			row_t * row = access->orig_row;
+			RC local;
 			#if LOG_ALGORITHM == LOG_TAURUS
-			RC local = lt.get_row(row, access->type, this, tempvar, lsn_vector, NULL, true, access->tid, true);
+			local = lt.get_row(row, access->type, this, tempvar, lsn_vector, NULL, true, access->tid, true);
 			#elif LOG_ALGORITHM == LOG_SERIAL
-			RC local = lt.get_row(row, access->type, this, tempvar, NULL, &_max_lsn, true, access->tid, true);
+			local = lt.get_row(row, access->type, this, tempvar, NULL, &_max_lsn, true, access->tid, true);
 			#elif LOG_ALGORITHM == LOG_NO || LOG_ALGORITHM == LOG_BATCH
-			RC local = lt.get_row(row, access->type, this, tempvar, NULL, NULL, true, access->tid, true);
+			local = lt.get_row(row, access->type, this, tempvar, NULL, NULL, true, access->tid, true);
 			#else
 			assert(false);
 			#endif
@@ -607,15 +609,15 @@ final:
 	} else {
 		if (wr_cnt > 0) {
 			
-			
+RC tid;	
 #if LOG_ALGORITHM != LOG_NO
 			//uint32_t logEntrySize = get_log_entry_length();
 			create_log_entry();
-			assert(_log_entry_size > 0);
+			assert(_log_entry_sizes > 0);
 #endif
 			uint64_t tt = get_sys_clock();
 			INC_INT_STATS(time_log_create, tt - tc5);
-			
+
 #if LOG_ALGORITHM == LOG_PARALLEL
 			// the txn is able to commit. Should append to the log record into 
 			// the log buffer, and get a ID for the log record. 
@@ -625,12 +627,12 @@ final:
 			//  | 1-bit lock bit | 16-bit logger ID | 48-bit LSN |
 			_cur_tid = (((uint64_t)logger_id) << 48) | tid; 
 #elif LOG_ALGORITHM == LOG_SERIAL 
-			uint64_t tid = log_manager->serialLogTxn(_log_entry, _log_entry_size, _cur_tid);
+			tid = log_manager->serialLogTxn(_log_entry, _log_entry_size, _cur_tid);
 			if (tid > _cur_tid)
 				_cur_tid = tid;
 #elif LOG_ALGORITHM == LOG_BATCH
 			uint32_t logger_id = GET_THD_ID % g_num_logger;
-			uint64_t tid = log_manager[logger_id]->logTxn(_log_entry, _log_entry_size, _epoch);
+			tid = log_manager[logger_id]->logTxn(_log_entry, _log_entry_size, _epoch);
 #elif LOG_ALGORITHM == LOG_TAURUS
 			
 #if PARTITION_AWARE
@@ -660,9 +662,9 @@ final:
 					}
 					target_id--;
 				}
-			uint64_t tid = log_manager->serialLogTxn(_log_entry, _log_entry_size, lsn_vector, target_logger_id);
+			tid = log_manager->serialLogTxn(_log_entry, _log_entry_size, lsn_vector, target_logger_id);
 #else
-			uint64_t tid = log_manager->serialLogTxn(_log_entry, _log_entry_size, lsn_vector, GET_THD_ID % g_num_logger);
+			tid = log_manager->serialLogTxn(_log_entry, _log_entry_size, lsn_vector, GET_THD_ID % g_num_logger);
 #endif
 #endif
 #if LOG_ALGORITHM != LOG_NO

@@ -103,7 +103,7 @@ RAID0_MODE = False
 DEFAULT_LOG_NUM=4
 
 PATH = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../')
-RESPATH = '/home/ubuntu/efs/'
+RESPATH = '/home/kyungmin/efs/'
 
 hostname = socket.gethostname()
 
@@ -146,7 +146,7 @@ def diffGX(cl):
         else:
                 return cl + ' -Gx1000000'
 
-PARAM_FUNETUNE = diffGX # straightThrough
+PARAM_FUNETUNE = diffGX # straightThroughu
 
 def diskCheckHDD(n):
     lsblk = subprocess.check_output("lsblk", shell=True).strip()
@@ -1256,11 +1256,11 @@ def all_done():
         print('time', endtime - starttime)
 
 if __name__ == '__main__':
-    res = subprocess.check_output('mount | grep efs', shell=True).decode('utf-8')
-    if not '/home/ubuntu/efs' in res:
-        print("[!!!!!!!!!!!!!!!!!!!!]")
-        print(bcolors.WARNING + "Warning: EFS not mounted." + bcolors.ENDC)
-        input() # warning
+    # res = subprocess.check_output('mount | grep efs', shell=True).decode('utf-8')
+    # if not '/home/kyungmin/efs' in res:
+    #     print("[!!!!!!!!!!!!!!!!!!!!]")
+    #     print(bcolors.WARNING + "Warning: EFS not mounted." + bcolors.ENDC)
+    #     input() # warning
 
     if len(sys.argv) > 1:
         if len(sys.argv) > 2:
@@ -1271,14 +1271,14 @@ if __name__ == '__main__':
         atexit.register(all_done)
         eval(sys.argv[1] + '()', globals(), locals())
         
-    else:
-        # run all the experiments
-        short()
-        shortSilo()
-        sensitivity()
-        LogNum()
-        sensitivityCompressionAux()
-        sensitivityCompression()
+    # else:
+    #     # run all the experiments
+    #     short()
+    #     shortSilo()
+    #     sensitivity()
+    #     LogNum()
+    #     sensitivityCompressionAux()
+    #     sensitivityCompression()
         
 
     print('Finished')

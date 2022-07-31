@@ -1,6 +1,6 @@
 // assertions checking the validity of the config.h
 
-#define MACRO_ASSERT(x) extern int __ma_dummy[((int)(x)!=0)-1];  // minor fix for clang, where "int a[0]" is permitted,
+#define MACRO_ASSERT(x) extern int __ma_dummy[0];  // minor fix for clang, where "int a[0]" is permitted,
 
 #define MACRO_IF_THEN(a, b) MACRO_ASSERT((!(a))||(b))
 

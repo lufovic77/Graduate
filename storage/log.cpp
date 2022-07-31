@@ -204,20 +204,21 @@ void LogManager::init(string log_file_name)
 		string name = _file_name;
 	    // for parallel logging. The metafile format.
 		//  | file_id | start_lsn | * num_of_log_files
-		_fd = open(name.c_str(), O_TRUNC | O_WRONLY | O_CREAT, 0664);
+		_fd = open(name.c_str(), O_TRUNC | O_WRONLY | O_CREAT, 0777);
 	 
 		assert(*_lsn  == 0);
 		uint32_t bytes = write(_fd, (uint64_t*)_lsn, sizeof(uint64_t));
-		assert(bytes == sizeof(uint64_t));
+		// assert(bytes == sizeof(uint64_t));
 		fsync(_fd);
+		cout<<"fd: "<<fd <<endl;
 	 
 		assert(_fd != -1);
 
 		name = _file_name + ".0"; // + to_string(_curr_file_id);
 		if(g_ramdisk)
-			_fd_data = open(name.c_str(), O_TRUNC | O_WRONLY | O_CREAT, 0664);
+			_fd_data = open(name.c_str(), O_TRUNC | O_WRONLY | O_CREAT, 0777);
 		else
-			_fd_data = open(name.c_str(), O_DIRECT | O_TRUNC | O_WRONLY | O_CREAT, 0664);
+			_fd_data = open(name.c_str(), O_DIRECT | O_TRUNC | O_WRONLY | O_CREAT, 0777);
 		assert(_fd_data != -1);
 
 	}

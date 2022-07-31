@@ -10,6 +10,7 @@ RC IndexHash::init(uint64_t bucket_cnt, int part_cnt) {
 	_buckets = new BucketHeader * [part_cnt];
 	for (int i = 0; i < part_cnt; i++) {
 		_buckets[i] = (BucketHeader *) MALLOC(sizeof(BucketHeader) * _bucket_cnt_per_part, 0);
+		cout<< i << " " << _buckets[i]<< " " <<_bucket_cnt_per_part << " " <<part_cnt << endl;
 		assert(_buckets[i]!=NULL);
 		
 		//#pragma omp parallel for

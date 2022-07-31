@@ -16,20 +16,20 @@ CFLAGS=-Wall -g -std=c++0x # -rdynami
 .SUFFIXES: .o .cpp .h
 
 SRC_DIRS = ./ ./benchmarks/ ./concurrency_control/ ./storage/ ./system/
-INCLUDE = -I. -I./benchmarks -I./concurrency_control -I./storage -I./system -I./include
+INCLUDE = -I. -I./benchmarks -I./concurrency_control -I./storage -I./system 
 
-CFLAGS += $(INCLUDE) -lrt -lpthread -msse4.2 -march=native -ffast-math -Werror -O3 -D_GNU_SOURCE -fopenmp # -fsanitize=address # -D_FORTIFY_SOURCE=1 -fsanitize=address # -std=c++11 -fsanitize=address -fno-omit-frame-pointer
+CFLAGS += $(INCLUDE) -lrt -lpthread -msse4.2 -march=native -ffast-math  -O3 -D_GNU_SOURCE -fopenmp # -fsanitize=address # -D_FORTIFY_SOURCE=1 -fsanitize=address # -std=c++11 -fsanitize=address -fno-omit-frame-pointer
 
 ifneq ($(JE_MALLOC), NO) # by default we use jemalloc
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 RELEASE_NAME := $(shell uname -r | cut -d '-' -f 3)
 	ifeq ($(RELEASE_NAME),generic)
-        LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt -ljemalloc -lnuma
+        LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt  -lnuma
 	endif
 	ifeq ($(RELEASE_NAME),aws)
 	# changing to aws will hurt TC ycsb performance (9.xe6 to 6.7e6)???
-        LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt -ljemalloc -lnuma # -lasan
+        LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt -lnuma # -lasan
 	endif
 	ifeq ($(RELEASE_NAME),Microsoft) # if Windows Subsystem
 		LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt # -ljemalloc

@@ -13,7 +13,7 @@ def replace(filename, pattern, replacement):
 
 jobs = {}
 dbms_cfg = ["config-std.h", "config.h"]
-algs = ['DL_DETECT', 'NO_WAIT', 'HEKATON', 'SILO', 'TICTOC']
+algs = ['DL_DETECT', 'NO_WAIT',  'SILO', 'TICTOC']
 def insert_job(alg, workload):
 	jobs[alg + '_' + workload] = {
 		"WORKLOAD"			: workload,
@@ -29,7 +29,7 @@ def test_compile(job):
 		replacement = "#define " + param + ' ' + str(value)
 		replace(dbms_cfg[1], pattern, replacement)
 	os.system("make clean > temp.out 2>&1")
-	ret = os.system("make -j8 > temp.out 2>&1")
+	ret = os.system("make -j4 > temp.out 2>&1")
 	if ret != 0:
 		print "ERROR in compiling job="
 		print job

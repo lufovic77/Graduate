@@ -9,6 +9,7 @@
 #define VERBOSE_SQL_CONTENT         8
 /***********************************************/
 
+
 /***********************************************/
 // Simulation + Hardware
 /***********************************************/
@@ -19,12 +20,12 @@
 #define PAGE_SIZE					4096 
 #define CL_SIZE						64
 // CPU_FREQ is used to get accurate timing info 
-#define CPU_FREQ 3.7
+#define CPU_FREQ 2.3
 
 // # of transactions to run for warmup
 #define WARMUP						0
 // YCSB or TPCC
-#define WORKLOAD YCSB
+#define WORKLOAD TPCC
 // print the transaction latency distribution
 #define PRT_LAT_DISTR				false
 #define STATS_ENABLE				true
@@ -55,9 +56,9 @@
 #define CC_ALG NO_WAIT
 #define ISOLATION_LEVEL 			SERIALIZABLE
 
-#define USE_LOCKTABLE true
-#define LOCKTABLE_MODIFIER			(10003) // (256)
-#define LOCKTABLE_INIT_SLOTS		(0)
+#define USE_LOCKTABLE				true
+#define LOCKTABLE_MODIFIER (10003)
+#define LOCKTABLE_INIT_SLOTS (1)
 // all transactions acquire tuples according to the primary key order.
 #define KEY_ORDER					false
 // transaction roll back changes after abort
@@ -119,14 +120,14 @@
 // Logging
 /***********************************************/
 
-#define LOG_ALGORITHM LOG_BATCH
+#define LOG_ALGORITHM LOG_TAURUS
 #define LOG_TYPE LOG_DATA
 #define LOG_RAM_DISK				false
 #define LOG_NO_FLUSH			 	false
 #define LOG_RECOVER                 false
 #define LOG_BATCH_TIME				10 // in ms
 #define LOG_GARBAGE_COLLECT         false
-#define LOG_BUFFER_SIZE				(1048576 * 50)	// in bytes
+#define LOG_BUFFER_SIZE 52428800
 // For LOG_PARALLEL
 #define LOG_PARALLEL_BUFFER_FILL	false 
 #define NUM_LOGGER					1 // the number of loggers
@@ -274,10 +275,9 @@ extern TestCases					g_test_case;
 #define COMPRESS_LSN_LOG			false // false
 #define PSN_FLUSH_FREQ				1000
 #define LOCKTABLE_EVICT_BUFFER		30000
-#define SOLVE_LIVELOCK				true
-#define POOLSIZE_WAIT				2000 // if pool size is too small it might cause live lock.
-#define PER_WORKER_RECOVERY 		(false)
-#define RECOVER_BUFFER_PERC			(0.5)
+#define SOLVE_LIVELOCK true
+#define POOLSIZE_WAIT 2000
+#define RECOVER_BUFFER_PERC (1.0)
 #define TAURUS_RECOVER_BATCH_SIZE	(500)
 #define ASYNC_IO					true
 #define DECODE_AT_WORKER			false
@@ -286,7 +286,8 @@ extern TestCases					g_test_case;
 #define BIG_HASH_TABLE_MODE (true)
 #define PROCESS_DEPENDENCY_LOGGER (false)
 #define PARTITION_AWARE				false // this switch does not bring much benefit for YCSB
-#define TAURUS_CHUNK				false
+#define PER_WORKER_RECOVERY			true // false //true
+#define TAURUS_CHUNK				true
 #define TAURUS_CHUNK_MEMCPY			true
 #define DISTINGUISH_COMMAND_LOGGING	true
 // big hash table mode means locktable evict buffer is infinite.
@@ -319,25 +320,20 @@ extern TestCases					g_test_case;
 // SIMD Config
 /************************************/
 
-#define MAX_LOGGER_NUM_SIMD 16
-#define SIMD_PREFIX __m512i // __m256i
-#define MM_MAX _mm512_max_epu32 //_mm256_max_epu32
-#define MM_MASK __mmask16
-#define MM_CMP _mm512_cmp_epu32_mask
-#define MM_EXP_LOAD _mm512_maskz_expandloadu_epi32
-#define MM_INTERLEAVE_MASK 0x5555
-#if UPDATE_SIMD
-#define G_NUM_LOGGER MAX_LOGGER_NUM_SIMD
-#else
 #define G_NUM_LOGGER g_num_logger
-#endif
-
-#define NUM_CORES_PER_SLOT	(24)
-#define NUMA_NODE_NUM	(2)
-#define HYPER_THREADING_FACTOR (2) // in total 24 * 2 * 2 = 96
+#define MAX_LOGGER_NUM_SIMD 8
+#define SIMD_PREFIX __m256i
+#define MM_MAX _mm256_max_epu32
+#define MM_MASK __mmask8
+#define MM_CMP _mm256_cmp_epu32_mask
+#define MM_EXP_LOAD _mm256_maskz_expandloadu_epi32
+#define MM_INTERLEAVE_MASK 0x55
+#define NUM_CORES_PER_SLOT 2
+#define NUMA_NODE_NUM 1
+#define HYPER_THREADING_FACTOR 2
 
 /************************************/
-#define OUTPUT_AVG_RATIO 0.5
+#define OUTPUT_AVG_RATIO 0.9
 
 #include "config-assertions.h"
 
@@ -347,10 +343,12 @@ extern TestCases					g_test_case;
 #define NUMA_MALLOC(x,y) numa_alloc_onnode(x, ((y) % g_num_logger) % NUMA_NODE_NUM)
 #define NUMA_FREE(x,y) numa_free(x, y)
 
-#if WORKLOAD == YCSB && CC_ALG == SILO
+#if WORKLOAD == YCSB
 #define MALLOC NUMA_MALLOC
 #define FREE NUMA_FREE
 #else
+// TPC-C workloads are generating too many memory allocations.
+// Each numa_alloc_onnode will create a separate mmap. It could be disastrous
 #define MALLOC MM_MALLOC
 #define FREE MM_FREE
 #endif

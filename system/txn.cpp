@@ -2323,8 +2323,8 @@ txn_man::get_log_entry_length()  ////////////////////// TODOTODO
 	}
 	#endif
 	// TODO checksum is ignored. 
-	_log_entry_size = offset;
-	assert(_log_entry_size < g_max_log_entry_size);
+	*_log_entry_sizes = offset;
+	assert(*_log_entry_sizes < g_max_log_entry_size);
 
 #elif LOG_TYPE == LOG_COMMAND
 	// Format for serial logging
