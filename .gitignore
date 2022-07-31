@@ -5,3 +5,6 @@
 *.config
 *.o
 *.d
+*.out
+*.data
+*.0
