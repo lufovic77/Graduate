@@ -210,7 +210,6 @@ void LogManager::init(string log_file_name)
 		uint32_t bytes = write(_fd, (uint64_t*)_lsn, sizeof(uint64_t));
 		// assert(bytes == sizeof(uint64_t));
 		fsync(_fd);
-		cout<<"fd: "<<fd <<endl;
 	 
 		assert(_fd != -1);
 
