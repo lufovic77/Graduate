@@ -8,3 +8,5 @@
 *.out
 *.data
 *.0
+*.pyc
+*.files
