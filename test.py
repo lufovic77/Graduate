@@ -13,7 +13,7 @@ def replace(filename, pattern, replacement):
 
 jobs = {}
 dbms_cfg = ["config-std.h", "config.h"]
-algs = ['DL_DETECT', 'NO_WAIT',  'SILO', 'TICTOC']
+algs = ['NO_WAIT',  'SILO']
 def insert_job(alg, workload):
 	jobs[alg + '_' + workload] = {
 		"WORKLOAD"			: workload,
@@ -29,7 +29,7 @@ def test_compile(job):
 		replacement = "#define " + param + ' ' + str(value)
 		replace(dbms_cfg[1], pattern, replacement)
 	os.system("make clean > temp.out 2>&1")
-	ret = os.system("make -j4 > temp.out 2>&1")
+	ret = os.system("make -j4 JE_MALLOC=NO > temp.out 2>&1")
 	if ret != 0:
 		print "ERROR in compiling job="
 		print job
@@ -48,7 +48,7 @@ def test_run(test = '', job=None):
 	cmd = "./rundb %s" % (app_flags)
 	start = datetime.datetime.now()
 	process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-	timeout = 10 # in second
+	timeout = 30 # in second
 	while process.poll() is None:
 		time.sleep(1)
 		now = datetime.datetime.now()
@@ -78,11 +78,6 @@ def run_all_test(jobs) :
 			test_run('', job)
 	jobs = {}
 
-# run YCSB tests
-jobs = {}
-for alg in algs: 
-	insert_job(alg, 'YCSB')
-run_all_test(jobs)
 
 # run TPCC tests
 jobs = {}

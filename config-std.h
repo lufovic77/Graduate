@@ -53,7 +53,7 @@
 /***********************************************/
 // WAIT_DIE, NO_WAIT, DL_DETECT, TIMESTAMP, MVCC, HEKATON, HSTORE, OCC, VLL, TICTOC, SILO
 // TODO TIMESTAMP does not work at this moment
-#define CC_ALG 						NO_WAIT //SILO //WAIT_DIE
+#define CC_ALG 						NO_WAIT
 #define ISOLATION_LEVEL 			SERIALIZABLE
 
 #define USE_LOCKTABLE				true
@@ -162,13 +162,13 @@
 // ==== [TPCC] ====
 // For large warehouse count, the tables do not fit in memory
 // small tpcc schemas shrink the table size.
-#define TPCC_SMALL					false // false // true // false
+#define TPCC_SMALL					true // false // true // false
 // Some of the transactions read the data but never use them. 
 // If TPCC_ACCESS_ALL == fales, then these parts of the transactions
 // are not modeled.
 #define TPCC_ACCESS_ALL 			false 
 #define WH_UPDATE					true
-#define NUM_WH 						32 // 16 // 4 // 16
+#define NUM_WH 						16 // 16 // 4 // 16
 //
 enum TPCCTxnType {TPCC_ALL, 
 				TPCC_PAYMENT, 

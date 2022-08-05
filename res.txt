@@ -1,0 +1,452 @@
+Buffer size 10 throughputs
+Buffer size 10 throughputs
+Buffer size 10 throughputs
+255933
+
+Average time in logging per txn: 2 with 5 txns.
+
+238857
+
+Average time in logging per txn: 2 with 3 txns.
+
+226345
+
+Average time in logging per txn: 2 with 2 txns.
+
+213077
+
+Average time in logging per txn: 2 with 1 txns.
+
+241380
+
+Average time in logging per txn: 2 with 4 txns.
+
+231789
+
+Average time in logging per txn: 2 with 3 txns.
+
+266137
+
+Average time in logging per txn: 2 with 6 txns.
+
+241741
+
+Average time in logging per txn: 2 with 4 txns.
+
+246045
+
+Average time in logging per txn: 2 with 4 txns.
+
+263219
+
+Average time in logging per txn: 2 with 6 txns.
+
+------------------------
+Buffer size 20 throughputs
+225204
+
+Average time in logging per txn: 2 with 2 txns.
+
+237507
+
+Average time in logging per txn: 2 with 3 txns.
+
+221675
+
+Average time in logging per txn: 2 with 2 txns.
+
+246083
+
+Average time in logging per txn: 2 with 4 txns.
+
+253505
+
+Average time in logging per txn: 2 with 5 txns.
+
+254982
+
+Average time in logging per txn: 2 with 5 txns.
+
+247826
+
+Average time in logging per txn: 2 with 4 txns.
+
+244781
+
+Average time in logging per txn: 2 with 4 txns.
+
+236517
+
+Average time in logging per txn: 2 with 3 txns.
+
+-------------------------
+Buffer size 30 throughputs
+229904
+
+Average time in logging per txn: 2 with 2 txns.
+
+233667
+
+Average time in logging per txn: 2 with 3 txns.
+
+254134
+
+Average time in logging per txn: 2 with 5 txns.
+
+257877
+
+Average time in logging per txn: 2 with 5 txns.
+
+216606
+
+Average time in logging per txn: 2 with 1 txns.
+
+222738
+
+Average time in logging per txn: 2 with 2 txns.
+
+249421
+
+Average time in logging per txn: 2 with 4 txns.
+
+210665
+
+Average time in logging per txn: 2 with 1 txns.
+
+251889
+
+Average time in logging per txn: 2 with 5 txns.
+
+234147
+
+Average time in logging per txn: 2 with 3 txns.
+
+284053
+
+Average time in logging per txn: 2 with 8 txns.
+
+------------------------
+Buffer size 40 throughputs
+229791
+
+Average time in logging per txn: 2 with 2 txns.
+
+238232
+
+Average time in logging per txn: 2 with 3 txns.
+
+222032
+
+Average time in logging per txn: 2 with 2 txns.
+
+249427
+
+Average time in logging per txn: 2 with 4 txns.
+
+258418
+
+Average time in logging per txn: 2 with 5 txns.
+
+236402
+
+Average time in logging per txn: 2 with 3 txns.
+
+273270
+
+Average time in logging per txn: 2 with 7 txns.
+
+239133
+
+Average time in logging per txn: 2 with 3 txns.
+
+259948
+
+Average time in logging per txn: 2 with 5 txns.
+
+252676
+
+Average time in logging per txn: 2 with 5 txns.
+
+245409
+
+Average time in logging per txn: 2 with 4 txns.
+
+------------------------
+Buffer size 50 throughputs
+264029
+
+Average time in logging per txn: 2 with 6 txns.
+
+258049
+
+Average time in logging per txn: 2 with 5 txns.
+
+265410
+
+Average time in logging per txn: 2 with 6 txns.
+
+229150
+
+Average time in logging per txn: 2 with 2 txns.
+
+224871
+
+Average time in logging per txn: 2 with 2 txns.
+
+251166
+
+Average time in logging per txn: 2 with 5 txns.
+
+228542
+
+Average time in logging per txn: 2 with 2 txns.
+
+244104
+
+Average time in logging per txn: 2 with 4 txns.
+
+206559
+
+Average time in logging per txn: 2 with 0 txns.
+
+256802
+
+Average time in logging per txn: 2 with 5 txns.
+
+228871
+
+Average time in logging per txn: 2 with 2 txns.
+
+-------------------------
+Buffer size 60 throughputs
+223495
+
+Average time in logging per txn: 2 with 2 txns.
+
+254494
+
+Average time in logging per txn: 2 with 5 txns.
+
+241697
+
+Average time in logging per txn: 2 with 4 txns.
+
+244922
+
+Average time in logging per txn: 2 with 4 txns.
+
+255283
+
+Average time in logging per txn: 2 with 5 txns.
+
+257294
+
+Average time in logging per txn: 2 with 5 txns.
+
+233854
+
+Average time in logging per txn: 2 with 3 txns.
+
+233392
+
+Average time in logging per txn: 2 with 3 txns.
+
+251900
+
+Average time in logging per txn: 2 with 5 txns.
+
+287985
+
+Average time in logging per txn: 2 with 8 txns.
+
+237874
+
+Average time in logging per txn: 2 with 3 txns.
+
+------------------------
+Buffer size 70 throughputs
+245168
+
+Average time in logging per txn: 2 with 4 txns.
+
+246596
+
+Average time in logging per txn: 2 with 4 txns.
+
+242454
+
+Average time in logging per txn: 2 with 4 txns.
+
+211969
+
+Average time in logging per txn: 2 with 1 txns.
+
+234363
+
+Average time in logging per txn: 2 with 3 txns.
+
+242823
+
+Average time in logging per txn: 2 with 4 txns.
+
+220197
+
+Average time in logging per txn: 2 with 2 txns.
+
+254714
+
+Average time in logging per txn: 2 with 5 txns.
+
+255963
+
+Average time in logging per txn: 2 with 5 txns.
+
+250529
+
+Average time in logging per txn: 2 with 5 txns.
+
+236293
+
+Average time in logging per txn: 2 with 3 txns.
+
+------------------------
+Buffer size 80 throughputs
+249031
+
+Average time in logging per txn: 2 with 4 txns.
+
+235307
+
+Average time in logging per txn: 2 with 3 txns.
+
+241215
+
+Average time in logging per txn: 2 with 4 txns.
+
+259378
+
+Average time in logging per txn: 2 with 5 txns.
+
+242084
+
+Average time in logging per txn: 2 with 4 txns.
+
+268623
+
+Average time in logging per txn: 2 with 6 txns.
+
+215543
+
+Average time in logging per txn: 2 with 1 txns.
+
+242890
+
+Average time in logging per txn: 2 with 4 txns.
+
+285250
+
+Average time in logging per txn: 2 with 8 txns.
+
+235985
+
+Average time in logging per txn: 2 with 3 txns.
+
+242357
+
+Average time in logging per txn: 2 with 4 txns.
+
+-------------------------
+Buffer size 90 throughputs
+257860
+
+Average time in logging per txn: 2 with 5 txns.
+
+262330
+
+Average time in logging per txn: 2 with 6 txns.
+
+254294
+
+Average time in logging per txn: 2 with 5 txns.
+
+231718
+
+Average time in logging per txn: 2 with 3 txns.
+
+275871
+
+Average time in logging per txn: 2 with 7 txns.
+
+259274
+
+Average time in logging per txn: 2 with 5 txns.
+
+235046
+
+Average time in logging per txn: 2 with 3 txns.
+
+258182
+
+Average time in logging per txn: 2 with 5 txns.
+
+250110
+
+Average time in logging per txn: 2 with 5 txns.
+
+255656
+
+Average time in logging per txn: 2 with 5 txns.
+
+------------------------
+Buffer size 100 throughputs
+234756
+
+Average time in logging per txn: 2 with 3 txns.
+
+273482
+
+Average time in logging per txn: 2 with 7 txns.
+
+235461
+
+Average time in logging per txn: 2 with 3 txns.
+
+239931
+
+Average time in logging per txn: 2 with 3 txns.
+
+246973
+
+Average time in logging per txn: 2 with 4 txns.
+
+236919
+
+Average time in logging per txn: 2 with 3 txns.
+
+247515
+
+Average time in logging per txn: 2 with 4 txns.
+
+247606
+
+Average time in logging per txn: 2 with 4 txns.
+
+242949
+
+Average time in logging per txn: 2 with 4 txns.
+
+259636
+
+Average time in logging per txn: 2 with 5 txns.
+
+---------- FINAL RESULTS ------------
+Average log time per txn for buffer_size 10: 2.0 with 3.8 txns.
+Average log time per txn for buffer_size 20: 1.8 with 3.2 txns.
+Average log time per txn for buffer_size 30: 2.2 with 3.9 txns.
+Average log time per txn for buffer_size 40: 2.2 with 4.3 txns.
+Average log time per txn for buffer_size 50: 2.2 with 3.9 txns.
+Average log time per txn for buffer_size 60: 2.2 with 4.7 txns.
+Average log time per txn for buffer_size 70: 2.2 with 4.0 txns.
+Average log time per txn for buffer_size 80: 2.2 with 4.6 txns.
+Average log time per txn for buffer_size 90: 2.0 with 4.9 txns.
+Average log time per txn for buffer_size 100: 2.0 with 4.0 txns.
