@@ -609,11 +609,11 @@ final:
 	} else {
 		if (wr_cnt > 0) {
 			
-RC tid;	
+uint64_t tid;	
 #if LOG_ALGORITHM != LOG_NO
 			//uint32_t logEntrySize = get_log_entry_length();
 			create_log_entry();
-			assert(_log_entry_sizes > 0);
+			assert(_log_entry_size > 0);
 #endif
 			uint64_t tt = get_sys_clock();
 			INC_INT_STATS(time_log_create, tt - tc5);
@@ -622,7 +622,7 @@ RC tid;
 			// the txn is able to commit. Should append to the log record into 
 			// the log buffer, and get a ID for the log record. 
 			uint32_t logger_id = GET_THD_ID % g_num_logger;
-			uint64_t tid = log_manager[logger_id]->logTxn(_log_entry, _log_entry_size);
+			tid = log_manager[logger_id]->logTxn(_log_entry, _log_entry_size);
 			// TID format 
 			//  | 1-bit lock bit | 16-bit logger ID | 48-bit LSN |
 			_cur_tid = (((uint64_t)logger_id) << 48) | tid; 

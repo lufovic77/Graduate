@@ -16,7 +16,7 @@ def replace(filename, pattern, replacement):
     f.close()
 
 
-dbms_cfg = ["/home/kyungmin/logging/config-std.h", "/home/kyungmin/logging/config.h"]
+dbms_cfg = ["/home/guest/dbx1000_logging/config-std.h", "/home/guest/dbx1000_logging/config.h"]
 algs = ['no', 'serial', 'parallel']
 
 def getCPUFreq():
@@ -222,10 +222,10 @@ def produce(jobs, filter=None):
             replace(dbms_cfg[1], pattern, replacement)
 
         if v['WORKLOAD'] == 'YCSB' and v['LOG_ALGORITHM'] == 'LOG_TAURUS' and v['LOG_TYPE']=='LOG_DATA':
-            command = "make clean && make -j4 JE_MALLOC=NO && cp rundb rundb_%s && cp config.h rundb_%s.config" % (jobname, jobname)
+            command = "make clean && make -j32 JE_MALLOC=NO && cp rundb rundb_%s && cp config.h rundb_%s.config" % (jobname, jobname)
             print(command)
         else:
-            command = "make clean && make -j4 && cp rundb rundb_%s && cp config.h rundb_%s.config" % (jobname, jobname)
+            command = "make clean && make -j32 && cp rundb rundb_%s && cp config.h rundb_%s.config" % (jobname, jobname)
             print(command)
         print("start to compile " + jobname)
         proc = subprocess.Popen(command, shell=True,
