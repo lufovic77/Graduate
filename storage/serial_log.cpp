@@ -78,9 +78,9 @@ void SerialLogManager::init()
 		//string dir = ".";
 
 #if LOG_TYPE == LOG_DATA
-		_logger[i]->init(dir + "/SD_log" + to_string(i) + "_" + bench + "_S.data");
+		_logger[i]->init("./logs/SD_log" + to_string(i) + "_" + bench + "_S.data");
 #else
-		_logger[i]->init(dir + "/SC_log" + to_string(i) + "_" + bench + "_S.data");
+		_logger[i]->init("./logs/SC_log" + to_string(i) + "_" + bench + "_S.data");
 #endif
 	}
 }

@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
 	gethostname(hostname, 256);
 	if (strncmp(hostname, "draco", 5) == 0)
 		dir = "./";
+	
 	if (strncmp(hostname, "yx", 2) == 0)
 	{
 		g_max_txns_per_thread = 100;
@@ -173,9 +174,9 @@ int main(int argc, char *argv[])
 		log_manager[i] = (LogManager *)MALLOC(sizeof(LogManager), GET_THD_ID);
 		new (log_manager[i]) LogManager(i);
 #if LOG_TYPE == LOG_DATA
-		log_manager[i]->init(dir + type + "D_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".log");
+		log_manager[i]->init("/mnt/pmem0/logs/" + type + "D_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".log");
 #else
-		log_manager[i]->init(dir + type + "C_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".log");
+		log_manager[i]->init("/mnt/pmem0/logs/" + type + "C_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".log");
 #endif
 	}
 

@@ -1,0 +1,154 @@
+NUM_CORES_PER_SLOT=24
+NUMA_NODE_NUM=2
+HYPER_THREADING_FACTOR=2
+Running in big-hash-table mode.
+
+Using 1 disks.
+g_flush_blocksize=1048576, g_log_buffer_size=26214400
+Init parallelism 96
+Stats initialized
+Global manager initialized
+reading schema file: ./benchmarks/TPCC_full_schema.txt
+0 0x7ff0c00ea040 50000000 1
+0 0x55a2a42d86c0 500 1
+0 0x55a2a42db680 5000 1
+0 0x7ff0aa997040 15000000 1
+0 0x7ff095244040 15000000 1
+0 0x7ff04d9db040 50000000 1
+TPCC schema initialized
+TPCC Data Initialization Complete!
+workload initialized!
+Init time 745.828
+Log Read Size: 419430400
+Log buffer size 26214400
+log file:		/mnt/pmem0/logs/SD_log0_TPCC_0.500000_S.data
+/mnt/pmem0/logs/SD_log0_TPCC_0.500000_S.data
+mem_allocator initialized!
+Query Queue Init Time 0.909344
+query_queue initialized!
+Setting logger 0 to CPU node 0
+PSN Flush Frequency: 1000
+sim_done = 1
+sim_done = 4
+sim_done = 2
+sim_done = 5
+sim_done = 3
+sim_done = 6
+Destructor 0. flush size=24196096 (2100297728 to 2124493824)
+PASS! SimTime = 2.24159e+09
+=Worker Thread=
+    Throughput:                   399585
+    MaxThr:                       399585
+    PerThdThr:                    404482
+    run_time:                     13.2847 (2.21424,2.2142,2.21399,2.21427,2.2141,2.21394,0,)
+    log_bytes:                    2.12449 (0,0,0,0,0,0,2.12449,)
+    log_dep_size:                 0 (0,0,0,0,0,0,0,)
+    log_total_size:               2.09332 (0.349584,0.349725,0.345741,0.349618,0.34919,0.349465,0,)
+    latency:                      52086.9 (8692.04,8719.55,8598.92,8703.63,8655.14,8717.58,0,)
+
+    num_commits:                  895574 (149593,150000,147991,149747,148992,149251,0,)
+    num_async_commits:            884817 (147805,148208,146210,147964,147174,147456,0,)
+    num_aborts:                   4768 (952,938,0,1032,991,855,0,)
+    num_aborts_logging:           0 (0,0,0,0,0,0,0,)
+    num_log_records:              0 (0,0,0,0,0,0,0,)
+    log_data:                     2.09332e+09 (349583579,349725072,345740705,349618345,349190214,349465205,0,)
+    num_latency_count:            884817 (147805,148208,146210,147964,147174,147456,0,)
+    num_raw_edges:                0 (0,0,0,0,0,0,0,)
+    num_waw_edges:                0 (0,0,0,0,0,0,0,)
+    num_war_edges:                0 (0,0,0,0,0,0,0,)
+    int_num_log:                  0 (0,0,0,0,0,0,0,)
+    int_debug_get_next:           0 (0,0,0,0,0,0,0,)
+    int_debug1:                   0 (0,0,0,0,0,0,0,)
+    int_debug2:                   2.01754e+09 (0,0,0,0,0,0,2017539072,)
+    int_debug3:                   2004 (0,0,0,0,0,0,2004,)
+    int_debug4:                   0 (0,0,0,0,0,0,0,)
+    int_debug5:                   0 (0,0,0,0,0,0,0,)
+    int_debug6:                   0 (0,0,0,0,0,0,0,)
+    int_debug7:                   0 (0,0,0,0,0,0,0,)
+    int_debug8:                   0 (0,0,0,0,0,0,0,)
+    int_debug9:                   0 (0,0,0,0,0,0,0,)
+    int_debug10:                  0 (0,0,0,0,0,0,0,)
+    int_psnflush:                 0 (0,0,0,0,0,0,0,)
+    int_flush_time_interval:      0 (0,0,0,0,0,0,0,)
+    int_flush_half_full:          2003 (0,0,0,0,0,0,2003,)
+    int_rec_fail_to_insert:       0 (0,0,0,0,0,0,0,)
+    int_num_get_row:              0 (0,0,0,0,0,0,0,)
+    int_locktable_volume:         0 (0,0,0,0,0,0,0,)
+    int_aux_bytes:                0 (0,0,0,0,0,0,0,)
+    int_nonzero:                  0 (0,0,0,0,0,0,0,)
+    num_log_entries:              895574 (149593,150000,147991,149747,148992,149251,0,)
+    time_ts_alloc:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_man:                     9.41307 1.56885 155.884% 10510.7 (1.57103,1.57332,1.56543,1.56939,1.56701,1.56689,0,)
+    time_cleanup:                 6.53026 1.08838 108.143% 7291.71 (1.091,1.09016,1.08166,1.08937,1.08752,1.09055,0,)
+    time_txn:                     0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_index:                   0.319804 0.0533007 5.29606% 357.094 (0.0527046,0.053061,0.0523211,0.0540006,0.0543309,0.0533858,0,)
+    time_log:                     0.0137754 0.0022959 0.228125% 15.3816 (0.00228048,0.00229107,0.00226102,0.00231022,0.00226469,0.00236793,0,)
+    time_io:                      2.23136 2.23136 221.712% 2491.54 (0,0,0,0,0,0,2.23136,)
+    time_wait_io:                 0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_phase1_add_graph:        0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover_txn:             0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_lv_overhead:             0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_state_malloc:            0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_phase1_1:                0.804901 0.13415 13.3294% 898.755 (0.136598,0.135411,0.125556,0.134962,0.137132,0.135242,0,)
+    time_phase1_2:                0.679909 0.113318 11.2595% 759.188 (0.113125,0.112285,0.121102,0.109259,0.112021,0.112117,0,)
+    time_phase2:                  1.16993 0.194988 19.3744% 1306.34 (0.198665,0.190295,0.200591,0.191942,0.195109,0.193323,0,)
+    time_phase3:                  1.01711 0.169519 16.8437% 1135.71 (0.166915,0.16762,0.16964,0.169987,0.172151,0.1708,0,)
+    time_phase1_1_raw:            2.02516 0.337527 33.5374% 2261.3 (0.331677,0.341942,0.336897,0.343115,0.334868,0.336665,0,)
+    time_phase1_2_raw:            0.0821304 0.0136884 1.36011% 91.707 (0.013686,0.0136795,0.0134334,0.0136424,0.0136762,0.0140129,0,)
+    time_phase2_raw:              0.0427681 0.00712801 0.708254% 47.7549 (0.007171,0.00706916,0.0069272,0.00707345,0.00716278,0.0073645,0,)
+    time_phase3_raw:              0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover_full:            0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover1:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover2:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover3:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover4:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover5:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover6:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover7:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_recover8:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug_get_next:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug0:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug1:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug2:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug3:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug4:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug5:                  0.0174306 0.0029051 0.288656% 19.463 (0.0028584,0.00288568,0.00284511,0.00291591,0.00290186,0.00302362,0,)
+    time_debug6:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug7:                  1.6368 0.2728 27.106% 1827.66 (0.273583,0.275099,0.267787,0.276048,0.273942,0.270343,0,)
+    time_debug8:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug9:                  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug10:                 0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug11:                 2.36203 0.393671 39.116% 2637.45 (0.406981,0.384014,0.39102,0.394322,0.395354,0.390338,0,)
+    time_debug12:                 10.8937 1.81562 180.404% 12164 (1.80243,1.82515,1.81826,1.81526,1.8138,1.81884,0,)
+    time_debug13:                 0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug14:                 0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_debug15:                 0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_rec_loop_tryRead:        0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_rec_finding_empty_slot:  0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate1:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate2:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate3:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate4:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate5:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate6:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate7:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate8:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_silo_validate9:          0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_locktable_get:           1.7982 0.2997 29.7788% 2007.88 (0.300409,0.30208,0.294181,0.302991,0.300727,0.297814,0,)
+    time_locktable_get_validation:0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_locktable_release:       0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_get_row_before:          0.421105 0.0701842 6.97365% 470.207 (0.0710927,0.0679154,0.0748489,0.067805,0.0696769,0.0697666,0,)
+    time_get_row_after:           1.14157 0.190261 18.9047% 1274.67 (0.189818,0.190259,0.193156,0.190904,0.188008,0.18942,0,)
+    time_log_create:              0.0938185 0.0156364 1.55367% 104.758 (0.0151588,0.0167295,0.0152698,0.0150602,0.0157157,0.0158845,0,)
+    time_log_serialLogTxn:        6.0715 1.01192 100.546% 6779.45 (1.01358,1.01174,1.01187,1.01241,1.00947,1.01242,0,)
+    time_cleanup_1:               0.00612401 0.00102067 0.101416% 6.83808 (0.00101817,0.00102365,0.00100664,0.00101913,0.00101482,0.00104159,0,)
+    time_cleanup_2:               0.0318255 0.00530424 0.527041% 35.5364 (0.00524681,0.0053094,0.00518362,0.00535042,0.00528535,0.00544988,0,)
+    time_insideSLT1:              0.213624 0.035604 3.53769% 238.533 (0.0367992,0.0361272,0.0352898,0.0355186,0.0346496,0.0352398,0,)
+    time_insideSLT2:              0.261637 0.0436062 4.3328% 292.145 (0.044864,0.044123,0.0430379,0.043401,0.0425604,0.0436509,0,)
+    time_STLother:                0 -nan -nan% 0 (0,0,0,0,0,0,0,)
+    time_logging_thread:          2.24126 2.24126 222.696% 2502.59 (0,0,0,0,0,0,2.24126,)
+    int_serialLogFail:            0 (0,0,0,0,0,0,0,)
+Projected Disk Bandwidth Utilized - avg 9.52108e+08 real 9.52108e+08
+Total time measured 748.485
+Total wall time observed 750.316
+Estimated CPU_FREQ is 2.19463

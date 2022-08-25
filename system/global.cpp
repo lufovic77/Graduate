@@ -75,7 +75,7 @@ ts_t g_timeout = TIMEOUT;
 ts_t g_dl_loop_detect = DL_LOOP_DETECT;
 bool g_ts_batch_alloc = TS_BATCH_ALLOC;
 UInt32 g_ts_batch_num = TS_BATCH_NUM;
-bool g_ramdisk = 0;
+bool g_ramdisk = 1;
 
 uint32_t g_max_log_entry_size = MAX_LOG_ENTRY_SIZE;
 uint32_t g_scan_window = SCAN_WINDOW;

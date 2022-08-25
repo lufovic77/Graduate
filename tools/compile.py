@@ -249,7 +249,7 @@ if __name__ == '__main__':
     # benchmarks = ['TPCC']
     filter = None
     if True:
-        benchmarks = ['YCSB', 'TPCC']
+        benchmarks = ['TPCC']
         for bench in benchmarks:
             #insert_his('parallel', bench, 'LOG_DATA')
             #insert_his('parallel', bench, 'LOG_COMMAND')

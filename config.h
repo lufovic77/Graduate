@@ -20,12 +20,12 @@
 #define PAGE_SIZE					4096 
 #define CL_SIZE						64
 // CPU_FREQ is used to get accurate timing info 
-#define CPU_FREQ 2.3
+#define CPU_FREQ 2.2
 
 // # of transactions to run for warmup
 #define WARMUP						0
 // YCSB or TPCC
-#define WORKLOAD YCSB
+#define WORKLOAD TPCC
 // print the transaction latency distribution
 #define PRT_LAT_DISTR				false
 #define STATS_ENABLE				true
@@ -53,12 +53,12 @@
 /***********************************************/
 // WAIT_DIE, NO_WAIT, DL_DETECT, TIMESTAMP, MVCC, HEKATON, HSTORE, OCC, VLL, TICTOC, SILO
 // TODO TIMESTAMP does not work at this moment
-#define CC_ALG NO_WAIT
+#define CC_ALG SILO
 #define ISOLATION_LEVEL 			SERIALIZABLE
 
 #define USE_LOCKTABLE				true
 #define LOCKTABLE_MODIFIER (10003)
-#define LOCKTABLE_INIT_SLOTS (1)
+#define LOCKTABLE_INIT_SLOTS (0)
 // all transactions acquire tuples according to the primary key order.
 #define KEY_ORDER					false
 // transaction roll back changes after abort
@@ -127,7 +127,7 @@
 #define LOG_RECOVER                 false
 #define LOG_BATCH_TIME				10 // in ms
 #define LOG_GARBAGE_COLLECT         false
-#define LOG_BUFFER_SIZE 52428800
+#define LOG_BUFFER_SIZE 524288000
 // For LOG_PARALLEL
 #define LOG_PARALLEL_BUFFER_FILL	false 
 #define NUM_LOGGER					1 // the number of loggers
@@ -149,7 +149,7 @@
 #define MAX_TUPLE_SIZE				1024 // in bytes
 // ==== [YCSB] ====
 #define INIT_PARALLELISM			32 // 28
-#define SYNTH_TABLE_SIZE (1024 * 1024 * 500)
+#define SYNTH_TABLE_SIZE 			(1024 * 1024 * 10)
 #define ZIPF_THETA 					0.6 // .6
 #define READ_PERC 					0.5
 #define WRITE_PERC 					0.5
@@ -168,7 +168,7 @@
 // are not modeled.
 #define TPCC_ACCESS_ALL 			false 
 #define WH_UPDATE					true
-#define NUM_WH 						32 // 16 // 4 // 16
+#define NUM_WH 						500 // 16 // 4 // 16
 //
 enum TPCCTxnType {TPCC_ALL, 
 				TPCC_PAYMENT, 
@@ -276,8 +276,8 @@ extern TestCases					g_test_case;
 #define PSN_FLUSH_FREQ				1000
 #define LOCKTABLE_EVICT_BUFFER		30000
 #define SOLVE_LIVELOCK true
-#define POOLSIZE_WAIT 2000
-#define RECOVER_BUFFER_PERC (1.0)
+#define POOLSIZE_WAIT				2000 // if pool size is too small it might cause live lock.
+#define RECOVER_BUFFER_PERC (0.5)
 #define TAURUS_RECOVER_BATCH_SIZE	(500)
 #define ASYNC_IO					true
 #define DECODE_AT_WORKER			false
@@ -286,9 +286,9 @@ extern TestCases					g_test_case;
 #define BIG_HASH_TABLE_MODE (true)
 #define PROCESS_DEPENDENCY_LOGGER (false)
 #define PARTITION_AWARE				false // this switch does not bring much benefit for YCSB
-#define PER_WORKER_RECOVERY (false)
-#define TAURUS_CHUNK (false)
-#define TAURUS_CHUNK (false)
+#define PER_WORKER_RECOVERY			true // false //true
+#define TAURUS_CHUNK				true
+#define TAURUS_CHUNK_MEMCPY			true
 #define DISTINGUISH_COMMAND_LOGGING	true
 // big hash table mode means locktable evict buffer is infinite.
 /************************************/
@@ -328,7 +328,7 @@ extern TestCases					g_test_case;
 #define MM_CMP _mm512_cmp_epu32_mask
 #define MM_EXP_LOAD _mm512_maskz_expandloadu_epi32
 #define MM_INTERLEAVE_MASK 0x5555
-#define NUM_CORES_PER_SLOT 16
+#define NUM_CORES_PER_SLOT 24
 #define NUMA_NODE_NUM 2
 #define HYPER_THREADING_FACTOR 2
 

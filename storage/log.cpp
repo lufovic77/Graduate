@@ -123,6 +123,7 @@ LogManager::~LogManager()
 		uint32_t bytes = write(_fd, &end_lsn, sizeof(uint64_t));
 		//uint32_t bytes = write(_fd, _lsn, sizeof(uint64_t));
 		assert(bytes == sizeof(uint64_t));
+		usleep(200);
 		fsync(_fd);
 
 		close(_fd);
@@ -202,6 +203,7 @@ void LogManager::init(string log_file_name)
 	} else {
 		//cout << log_file_name << endl;
 		string name = _file_name;
+		cout<<name<<endl;
 	    // for parallel logging. The metafile format.
 		//  | file_id | start_lsn | * num_of_log_files
 		_fd = open(name.c_str(), O_TRUNC | O_WRONLY | O_CREAT, 0777);
@@ -209,6 +211,7 @@ void LogManager::init(string log_file_name)
 		assert(*_lsn  == 0);
 		uint32_t bytes = write(_fd, (uint64_t*)_lsn, sizeof(uint64_t));
 		// assert(bytes == sizeof(uint64_t));
+		usleep(200);
 		fsync(_fd);
 	 
 		assert(_fd != -1);
@@ -304,6 +307,7 @@ uint64_t
 LogManager::tryFlush() 
 {
 	// entries before ready_lsn can be flushed. 
+	usleep(200);
 	if (g_no_flush) {
 		uint32_t size = *_lsn - *_persistent_lsn; //*_persistent_lsn - *_lsn;
 		*_persistent_lsn = *_lsn;
@@ -396,6 +400,7 @@ LogManager::tryFlush()
 
 		uint32_t bytes = write(_fd, &ready_lsn, sizeof(ready_lsn)); // TODO: end_lsn??
 		assert(bytes == sizeof(ready_lsn));
+		usleep(200);
 		fsync(_fd);
 	}
 #endif
@@ -405,6 +410,7 @@ LogManager::tryFlush()
 void 
 LogManager::flush(uint64_t start_lsn, uint64_t end_lsn)
 {
+	usleep(200);
 	uint64_t starttime = get_sys_clock();
 	//assert(false);
 //#if LOG_ALGORITHM != LOG_BATCH

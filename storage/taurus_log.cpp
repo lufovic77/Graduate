@@ -108,9 +108,9 @@ void TaurusLogManager::init()
 		}
 		//string dir = ".";
 #if LOG_TYPE == LOG_DATA
-		_logger[i]->init(dir + "TD_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
+		_logger[i]->init("/mnt/ramdisk/logs/TD_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
 #else
-		_logger[i]->init(dir + "TC_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
+		_logger[i]->init("/mnt/ramdisk/logs/TC_log" + to_string(i) + "_" + to_string(g_num_logger) + "_" + bench + ".data");
 #endif
 
 #if COMPRESS_LSN_LOG
@@ -129,6 +129,7 @@ void TaurusLogManager::init()
 uint64_t
 TaurusLogManager::tryFlush()
 {
+	usleep(200);
 	uint32_t logger_id = GET_THD_ID % g_num_logger;
 #if COMPRESS_LSN_LOG
 	uint64_t lt = _logger[logger_id]->_lsn[0];
@@ -158,6 +159,7 @@ TaurusLogManager::tryFlush()
 
 uint64_t TaurusLogManager::flushPSN()
 {
+	usleep(200);
 	// TODO: flush psn
 	// Format
 	// checksum:4 | size:4 | PSN_1:8 | PSN_2:8 | ... | PSN_k:8
