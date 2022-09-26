@@ -1,0 +1,22 @@
+NUM_CORES_PER_SLOT=24
+NUMA_NODE_NUM=2
+HYPER_THREADING_FACTOR=2
+Using SIMD
+MM_MAX=_mm512_max_epu32
+SIMD_PREFIX=__m512i
+MAX_LOGGER_NUM_SIMD=16
+Running in big-hash-table mode.
+
+Using 1 disks.
+g_flush_blocksize=1048576, g_log_buffer_size=52428800
+Init parallelism 96
+Stats initialized
+Global manager initialized
+reading schema file: ./benchmarks/TPCC_full_schema.txt
+0 0x7f4b6720e040 50000000 1
+0 0x55bf8214ff80 500 1
+0 0x55bf82152f40 5000 1
+0 0x7f4b51abb040 15000000 1
+0 0x7f4b3c368040 15000000 1
+0 0x7f4af4aff040 50000000 1
+TPCC schema initialized

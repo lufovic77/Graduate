@@ -11,7 +11,7 @@ ifeq ($(shell echo $(HOSTNAME) | head -c 2), ip)
 CC=g++ # EC2
 endif
 
-CFLAGS=-Wall -g -std=c++0x # -rdynami
+CFLAGS=-Wall -g -std=c++0x -lnuma# -rdynami
 
 .SUFFIXES: .o .cpp .h
 
@@ -25,7 +25,7 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 RELEASE_NAME := $(shell uname -r | cut -d '-' -f 3)
 	ifeq ($(RELEASE_NAME),generic)
-        LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt  -lnuma
+        LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt -lnuma
 	endif
 	ifeq ($(RELEASE_NAME),aws)
 	# changing to aws will hurt TC ycsb performance (9.xe6 to 6.7e6)???
@@ -39,7 +39,7 @@ ifeq ($(UNAME_S),Darwin)
         LDFLAGS = -Wall -L. -g -ggdb -std=c++0x -O3 -pthread  -lSystem.B # -ljemalloc 
 endif
 else
-	 LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt -lnuma # -lasan
+	LDFLAGS = -Wall -L. -L./libs -g -ggdb -std=c++0x -O3 -pthread -lrt -lnuma # -lasan
 endif
 
 LDFLAGS += $(CFLAGS)

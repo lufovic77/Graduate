@@ -123,7 +123,6 @@ LogManager::~LogManager()
 		uint32_t bytes = write(_fd, &end_lsn, sizeof(uint64_t));
 		//uint32_t bytes = write(_fd, _lsn, sizeof(uint64_t));
 		assert(bytes == sizeof(uint64_t));
-		usleep(200);
 		fsync(_fd);
 
 		close(_fd);
@@ -211,9 +210,7 @@ void LogManager::init(string log_file_name)
 		assert(*_lsn  == 0);
 		uint32_t bytes = write(_fd, (uint64_t*)_lsn, sizeof(uint64_t));
 		// assert(bytes == sizeof(uint64_t));
-		usleep(200);
 		fsync(_fd);
-	 
 		assert(_fd != -1);
 
 		name = _file_name + ".0"; // + to_string(_curr_file_id);
@@ -400,7 +397,6 @@ LogManager::tryFlush()
 
 		uint32_t bytes = write(_fd, &ready_lsn, sizeof(ready_lsn)); // TODO: end_lsn??
 		assert(bytes == sizeof(ready_lsn));
-		usleep(200);
 		fsync(_fd);
 	}
 #endif
@@ -410,7 +406,6 @@ LogManager::tryFlush()
 void 
 LogManager::flush(uint64_t start_lsn, uint64_t end_lsn)
 {
-	usleep(200);
 	uint64_t starttime = get_sys_clock();
 	//assert(false);
 //#if LOG_ALGORITHM != LOG_BATCH

@@ -81,7 +81,6 @@ RamDisk::read() {
 void
 RamDisk::write(char * entry, uint64_t offset, uint32_t size)
 {
-	usleep(200);
 	assert( size == *(uint32_t *)entry || *(uint32_t *)entry == UINT32_MAX);
 	assert( size > 0 );
 	uint32_t begin_block_num = offset / _block_size;
@@ -106,7 +105,6 @@ RamDisk::write(char * entry, uint64_t offset, uint32_t size)
 void 
 RamDisk::flush(uint64_t total_size)
 {
-	usleep(200);
 	_file.open(_file_name, ios::out | ios::binary | ios::trunc);
 	_file.seekg (0, _file.beg);
 	assert(!g_log_recover);

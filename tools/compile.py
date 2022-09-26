@@ -16,7 +16,7 @@ def replace(filename, pattern, replacement):
     f.close()
 
 
-dbms_cfg = ["/home/guest/dbx1000_logging/config-std.h", "/home/guest/dbx1000_logging/config.h"]
+dbms_cfg = ["/home/guest/dbx1000/config-std.h", "/home/guest/dbx1000/config.h"]
 algs = ['no', 'serial', 'parallel']
 
 def getCPUFreq():
@@ -122,7 +122,7 @@ def insert_his(jobs, alg, workload='YCSB', cc_alg='NO_WAIT', log_type='LOG_DATA'
     # jobs[name]['BIG_HASH_TABLE_MODE'] = '(true)'
     if alg == 'no':
         # jobs[name]["USE_LOCKTABLE"] = 'false'
-        if cc_alg == 'SILO':
+        if cc_alg == 'SILO' or cc_alg == "WAIT_DIE":
             jobs[name]["USE_LOCKTABLE"] = 'false'
             # we do not use locktable for no logging because SILO is not using the locktable.
         if cc_alg == 'NO_WAIT':
@@ -255,33 +255,11 @@ if __name__ == '__main__':
             #insert_his('parallel', bench, 'LOG_COMMAND')
             #insert_his('batch', bench, 'LOG_DATA')
 
-            insert_his(jobs, 'taurus', bench, 'NO_WAIT', 'LOG_DATA', per_worker_rec='false')
-            insert_his(jobs, 'taurus', bench, 'NO_WAIT', 'LOG_COMMAND', per_worker_rec='false')
-            insert_his(jobs, 'taurus', bench, 'SILO', 'LOG_DATA', per_worker_rec='false')
-            insert_his(jobs, 'taurus', bench, 'SILO', 'LOG_COMMAND', per_worker_rec='false')
-            
-            insert_his(jobs, 'taurus', bench, 'NO_WAIT', 'LOG_DATA', prevent_locktable='true')
-            insert_his(jobs, 'taurus', bench, 'NO_WAIT', 'LOG_COMMAND', prevent_locktable='true')
-            insert_his(jobs, 'taurus', bench, 'SILO', 'LOG_DATA', prevent_locktable='true')
-            insert_his(jobs, 'taurus', bench, 'SILO', 'LOG_COMMAND', prevent_locktable='true')
-            
 
-            insert_his(jobs, 'no', bench, 'NO_WAIT', 'LOG_DATA')
-            insert_his(jobs, 'no', bench, 'SILO', 'LOG_DATA')
-            
-            insert_his(jobs, 'serial', bench, 'SILO', 'LOG_DATA')
-            insert_his(jobs, 'serial', bench, 'SILO', 'LOG_COMMAND')
-            insert_his(jobs, 'serial', bench, 'NO_WAIT', 'LOG_DATA')
-            insert_his(jobs, 'serial', bench, 'NO_WAIT', 'LOG_COMMAND')
-            insert_his(jobs, 'taurus', bench, 'SILO', 'LOG_DATA')
-            insert_his(jobs, 'taurus', bench, 'NO_WAIT', 'LOG_DATA')
-            insert_his(jobs, 'taurus', bench, 'NO_WAIT', 'LOG_COMMAND')
-            insert_his(jobs, 'taurus', bench, 'SILO', 'LOG_COMMAND')
-            insert_his(jobs, 'batch', bench, 'SILO', 'LOG_DATA')
-            insert_his(jobs, 'plover', bench, 'NO_WAIT', 'LOG_DATA')
+	    insert_his(jobs, 'taurus', bench, 'DL_DETECT', 'LOG_COMMAND')
+	    insert_his(jobs, 'no', bench, 'DL_DETECT', 'LOG_COMMAND')
 
-            insert_his(jobs, 'serial', bench, 'NO_WAIT', 'LOG_COMMAND', withold_log='true')
-    
+
     if len(sys.argv) > 1:
         filter = sys.argv[1]
     produce(jobs, filter)

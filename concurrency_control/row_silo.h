@@ -29,7 +29,6 @@ public:
 #endif
 	uint64_t 			get_tid();
 	void 	 			set_tid(uint64_t tid) { _tid_word = tid; }
-
 	void 				assert_lock() {assert(_tid_word & LOCK_BIT); }
 //private:
 #if ATOMIC_WORD

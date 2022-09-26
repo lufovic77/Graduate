@@ -92,7 +92,7 @@ void txn_man::init(thread_t * h_thd, workload * h_wl, uint64_t thd_id) {
 	num_accesses_alloc = 0;
 #if CC_ALG == TICTOC || CC_ALG == SILO
 	_pre_abort = g_pre_abort; 
-	_validation_no_wait = true;
+	_validation_no_wait = false;
 #endif
 #if CC_ALG == TICTOC
 	_max_wts = 0;
@@ -793,7 +793,7 @@ RC txn_man::get_row(row_t * row, access_t type, char * &data) { //TODO: change t
 
 #if (CC_ALG == NO_WAIT || CC_ALG == DL_DETECT) && ISOLATION_LEVEL == REPEATABLE_READ
 	if (type == RD)
-		row->return_row(type, this, accesses[ row_cnt ]->data);
+		row->return_row(type, this, accesses[ row_cnt ]->data, rc);
 #endif
 	
 	

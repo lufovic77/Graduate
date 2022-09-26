@@ -13,7 +13,7 @@
 /***********************************************/
 // Simulation + Hardware
 /***********************************************/
-#define THREAD_CNT				 	6
+#define THREAD_CNT				 	48
 #define PART_CNT					1 
 // each transaction only accesses 1 virtual partition. But the lock/ts manager and index are not aware of such partitioning. VIRTUAL_PART_CNT describes the request distribution and is only used to generate queries. For HSTORE, VIRTUAL_PART_CNT should be the same as PART_CNT.
 #define VIRTUAL_PART_CNT			1
@@ -53,12 +53,12 @@
 /***********************************************/
 // WAIT_DIE, NO_WAIT, DL_DETECT, TIMESTAMP, MVCC, HEKATON, HSTORE, OCC, VLL, TICTOC, SILO
 // TODO TIMESTAMP does not work at this moment
-#define CC_ALG SILO
-#define ISOLATION_LEVEL 			SERIALIZABLE
+#define CC_ALG DL_DETECT
+#define ISOLATION_LEVEL 			REPEATABLE_READ
 
 #define USE_LOCKTABLE				true
 #define LOCKTABLE_MODIFIER (10003)
-#define LOCKTABLE_INIT_SLOTS (0)
+#define LOCKTABLE_INIT_SLOTS (1)
 // all transactions acquire tuples according to the primary key order.
 #define KEY_ORDER					false
 // transaction roll back changes after abort
@@ -120,14 +120,14 @@
 // Logging
 /***********************************************/
 
-#define LOG_ALGORITHM LOG_TAURUS
-#define LOG_TYPE LOG_DATA
+#define LOG_ALGORITHM LOG_NO
+#define LOG_TYPE LOG_COMMAND
 #define LOG_RAM_DISK				false
 #define LOG_NO_FLUSH			 	false
 #define LOG_RECOVER                 false
 #define LOG_BATCH_TIME				10 // in ms
 #define LOG_GARBAGE_COLLECT         false
-#define LOG_BUFFER_SIZE 524288000
+#define LOG_BUFFER_SIZE				(1048576 * 50)	// in bytes
 // For LOG_PARALLEL
 #define LOG_PARALLEL_BUFFER_FILL	false 
 #define NUM_LOGGER					1 // the number of loggers
@@ -149,7 +149,7 @@
 #define MAX_TUPLE_SIZE				1024 // in bytes
 // ==== [YCSB] ====
 #define INIT_PARALLELISM			32 // 28
-#define SYNTH_TABLE_SIZE 			(1024 * 1024 * 10)
+#define SYNTH_TABLE_SIZE 			(1024 * 1024 * 15)
 #define ZIPF_THETA 					0.6 // .6
 #define READ_PERC 					0.5
 #define WRITE_PERC 					0.5
@@ -275,21 +275,21 @@ extern TestCases					g_test_case;
 #define COMPRESS_LSN_LOG			false // false
 #define PSN_FLUSH_FREQ				1000
 #define LOCKTABLE_EVICT_BUFFER		30000
-#define SOLVE_LIVELOCK true
+#define SOLVE_LIVELOCK				true
 #define POOLSIZE_WAIT				2000 // if pool size is too small it might cause live lock.
-#define RECOVER_BUFFER_PERC (0.5)
+#define RECOVER_BUFFER_PERC			(0.5)
 #define TAURUS_RECOVER_BATCH_SIZE	(500)
 #define ASYNC_IO					true
 #define DECODE_AT_WORKER			false
-#define UPDATE_SIMD (true)
+#define UPDATE_SIMD (false)
 #define SCAN_WINDOW 2
 #define BIG_HASH_TABLE_MODE (true)
 #define PROCESS_DEPENDENCY_LOGGER (false)
 #define PARTITION_AWARE				false // this switch does not bring much benefit for YCSB
-#define PER_WORKER_RECOVERY			true // false //true
-#define TAURUS_CHUNK				true
-#define TAURUS_CHUNK_MEMCPY			true
-#define DISTINGUISH_COMMAND_LOGGING	true
+#define PER_WORKER_RECOVERY (false)
+#define TAURUS_CHUNK (false)
+#define TAURUS_CHUNK (false)
+#define DISTINGUISH_COMMAND_LOGGING (false)
 // big hash table mode means locktable evict buffer is infinite.
 /************************************/
 // LOG BATCH
@@ -322,8 +322,8 @@ extern TestCases					g_test_case;
 
 #define G_NUM_LOGGER g_num_logger
 #define MAX_LOGGER_NUM_SIMD 16
-#define SIMD_PREFIX __m512i
-#define MM_MAX _mm512_max_epu32
+#define SIMD_PREFIX __m512i // __m256i
+#define MM_MAX _mm512_max_epu32 //_mm256_max_epu32
 #define MM_MASK __mmask16
 #define MM_CMP _mm512_cmp_epu32_mask
 #define MM_EXP_LOAD _mm512_maskz_expandloadu_epi32

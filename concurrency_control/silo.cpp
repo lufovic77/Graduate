@@ -551,7 +551,7 @@ txn_man::validate_silo()
 	INC_INT_STATS(time_silo_validate3, tc3 - tc2);
 	COMPILER_BARRIER
 	// validate rows in the read set
-#if LOG_ALGORITHM == LOG_TAURUS
+#if LOG_ALGORITHM == LOG_TAURUS && ISOLATION_LEVEL != REPEATABLE_READ
 	for (uint32_t i = 0; i < row_cnt - tmp_wr_cnt; i ++) {
 		Access * access = accesses[ read_set[i] ];
 		row_t *row = access->orig_row;

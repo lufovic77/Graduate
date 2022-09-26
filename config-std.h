@@ -13,19 +13,19 @@
 /***********************************************/
 // Simulation + Hardware
 /***********************************************/
-#define THREAD_CNT				 	6
+#define THREAD_CNT				 	48
 #define PART_CNT					1 
 // each transaction only accesses 1 virtual partition. But the lock/ts manager and index are not aware of such partitioning. VIRTUAL_PART_CNT describes the request distribution and is only used to generate queries. For HSTORE, VIRTUAL_PART_CNT should be the same as PART_CNT.
 #define VIRTUAL_PART_CNT			1
 #define PAGE_SIZE					4096 
 #define CL_SIZE						64
 // CPU_FREQ is used to get accurate timing info 
-#define CPU_FREQ 					2.5	// in GHz/s // TODO: change this
+#define CPU_FREQ 2.2
 
 // # of transactions to run for warmup
 #define WARMUP						0
 // YCSB or TPCC
-#define WORKLOAD YCSB
+#define WORKLOAD TPCC
 // print the transaction latency distribution
 #define PRT_LAT_DISTR				false
 #define STATS_ENABLE				true
@@ -53,12 +53,12 @@
 /***********************************************/
 // WAIT_DIE, NO_WAIT, DL_DETECT, TIMESTAMP, MVCC, HEKATON, HSTORE, OCC, VLL, TICTOC, SILO
 // TODO TIMESTAMP does not work at this moment
-#define CC_ALG 						NO_WAIT
-#define ISOLATION_LEVEL 			SERIALIZABLE
+#define CC_ALG NO_WAIT
+#define ISOLATION_LEVEL 			REPEATABLE_READ
 
 #define USE_LOCKTABLE				true
-#define LOCKTABLE_MODIFIER			(10003) // (256)
-#define LOCKTABLE_INIT_SLOTS		(0)
+#define LOCKTABLE_MODIFIER (10003)
+#define LOCKTABLE_INIT_SLOTS (1)
 // all transactions acquire tuples according to the primary key order.
 #define KEY_ORDER					false
 // transaction roll back changes after abort
@@ -120,8 +120,8 @@
 // Logging
 /***********************************************/
 
-#define LOG_ALGORITHM               LOG_PLOVER // LOG_TAURUS
-#define LOG_TYPE                    LOG_DATA
+#define LOG_ALGORITHM LOG_NO
+#define LOG_TYPE LOG_COMMAND
 #define LOG_RAM_DISK				false
 #define LOG_NO_FLUSH			 	false
 #define LOG_RECOVER                 false
@@ -133,7 +133,7 @@
 #define NUM_LOGGER					1 // the number of loggers
 #define LOG_PARALLEL_NUM_BUCKETS    4000000	// should equal the number of recovered txns
 #define MAX_LOG_ENTRY_SIZE			16384 // in Bytes
-#define LOG_FLUSH_INTERVAL   		50000000 // in us. 
+#define LOG_FLUSH_INTERVAL 0
 #define TRACK_WAR_DEPENDENCY		true // necessary only for logical or command logging.  
 #define LOG_PARALLEL_REC_NUM_POOLS  THREAD_CNT 
 #define LOG_CHUNK_SIZE  			(1048576 * 10)
@@ -144,12 +144,12 @@
 // max number of rows touched per transaction
 #define MAX_ROW_PER_TXN				1024
 #define QUERY_INTVL 				1UL
-#define MAX_TXNS_PER_THREAD 		50000
+#define MAX_TXNS_PER_THREAD (150000)
 #define FIRST_PART_LOCAL 			true
 #define MAX_TUPLE_SIZE				1024 // in bytes
 // ==== [YCSB] ====
 #define INIT_PARALLELISM			32 // 28
-#define SYNTH_TABLE_SIZE 			(1024 * 1024 * 10)
+#define SYNTH_TABLE_SIZE 			(1024 * 1024 * 15)
 #define ZIPF_THETA 					0.6 // .6
 #define READ_PERC 					0.5
 #define WRITE_PERC 					0.5
@@ -281,15 +281,15 @@ extern TestCases					g_test_case;
 #define TAURUS_RECOVER_BATCH_SIZE	(500)
 #define ASYNC_IO					true
 #define DECODE_AT_WORKER			false
-#define UPDATE_SIMD					true
-#define SCAN_WINDOW					2
-#define BIG_HASH_TABLE_MODE			true // true // false
-#define PROCESS_DEPENDENCY_LOGGER   false
+#define UPDATE_SIMD (false)
+#define SCAN_WINDOW 2
+#define BIG_HASH_TABLE_MODE (true)
+#define PROCESS_DEPENDENCY_LOGGER (false)
 #define PARTITION_AWARE				false // this switch does not bring much benefit for YCSB
-#define PER_WORKER_RECOVERY			true // false //true
-#define TAURUS_CHUNK				true
-#define TAURUS_CHUNK_MEMCPY			true
-#define DISTINGUISH_COMMAND_LOGGING	true
+#define PER_WORKER_RECOVERY (false)
+#define TAURUS_CHUNK (false)
+#define TAURUS_CHUNK (false)
+#define DISTINGUISH_COMMAND_LOGGING (false)
 // big hash table mode means locktable evict buffer is infinite.
 /************************************/
 // LOG BATCH
@@ -328,9 +328,9 @@ extern TestCases					g_test_case;
 #define MM_CMP _mm512_cmp_epu32_mask
 #define MM_EXP_LOAD _mm512_maskz_expandloadu_epi32
 #define MM_INTERLEAVE_MASK 0x5555
-#define NUM_CORES_PER_SLOT	(24)
-#define NUMA_NODE_NUM	(2)
-#define HYPER_THREADING_FACTOR (2) // in total 24 * 2 * 2 = 96
+#define NUM_CORES_PER_SLOT 24
+#define NUMA_NODE_NUM 2
+#define HYPER_THREADING_FACTOR 2
 
 /************************************/
 #define OUTPUT_AVG_RATIO 0.9
