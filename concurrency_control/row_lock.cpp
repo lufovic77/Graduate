@@ -5,7 +5,7 @@
 #include "mem_alloc.h"
 #include "manager.h"
 
-#if CC_ALG == NO_WAIT || CC_ALG == WAIT_DIE || CC_ALG == DL_DETEC || CC_ALG == OCC
+#if CC_ALG == NO_WAIT || CC_ALG == WAIT_DIE || CC_ALG == DL_DETECT 
 
 #define CONFLICT(a, b) (a != LOCK_NONE_T && b != LOCK_NONE_T) && (a==LOCK_EX_T || b==LOCK_EX_T)
 

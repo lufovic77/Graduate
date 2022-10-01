@@ -1,6 +1,6 @@
 #pragma once
 
-#if CC_ALG == NO_WAIT || CC_ALG == WAIT_DIE || CC_ALG == DL_DETECT || CC_ALG == OCC
+#if CC_ALG == NO_WAIT || CC_ALG == WAIT_DIE || CC_ALG == DL_DETECT
 
 struct LockEntry
 {
